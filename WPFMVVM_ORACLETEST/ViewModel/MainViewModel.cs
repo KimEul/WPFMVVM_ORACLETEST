@@ -17,7 +17,7 @@ namespace WPFMVVM_ORACLETEST.ViewModel
     {
         readonly MainWindow ownerWindow = null;
         // MainWindow 객체 선언
-        Student _stu = new Student(); 
+        DataSource _stu = new DataSource(); 
         public MainViewModel(MainWindow win) 
         { 
             ownerWindow = win; 
@@ -38,13 +38,13 @@ namespace WPFMVVM_ORACLETEST.ViewModel
                 OnPropertyChanged("JOB"); 
                 } 
         } 
-        ObservableCollection<Student> _sampleDatas = null; 
-        public ObservableCollection<Student> SampleDatas 
+        ObservableCollection<DataSource> _sampleDatas = null; 
+        public ObservableCollection<DataSource> SampleDatas 
         { 
             get 
             { 
                 if (_sampleDatas == null) 
-                { _sampleDatas = new ObservableCollection<Student>(); 
+                { _sampleDatas = new ObservableCollection<DataSource>(); 
                 } 
                 return _sampleDatas; 
             } 
@@ -110,7 +110,7 @@ namespace WPFMVVM_ORACLETEST.ViewModel
             OracleDBManager.Instance.ExecuteDsQuery(ds, query); 
             for(int idx = 0; idx < ds.Tables[0].Rows.Count; idx++) 
             { 
-                Student obj = new Student 
+                DataSource obj = new DataSource 
                 { 
                     ENAME = ds.Tables[0].Rows[idx]["ENAME"].ToString(), 
                     JOB = ds.Tables[0].Rows[idx]["JOB"].ToString() 

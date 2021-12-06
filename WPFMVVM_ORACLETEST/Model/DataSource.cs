@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WPFMVVM_ORACLETEST.Model
 {
-    public class Student 
+    public class DataSource 
     { 
         public string ENAME 
         { 
