@@ -1,0 +1,10 @@
+﻿<Configuration>
+	<DATABASE>
+		<D_ADDR01>meiday-db.c4ztpfm2p61d.ap-northeast-2.rds.amazonaws.com</D_ADDR01>
+		<D_ADDR02>0.0.0.0</D_ADDR02>
+		<PORT>1521</PORT>
+		<USER>admin</USER>
+		<PWD>ezct7410!</PWD>
+		<SERVICE_NAME>ORCL</SERVICE_NAME>
+	</DATABASE>
+</Configuration>
