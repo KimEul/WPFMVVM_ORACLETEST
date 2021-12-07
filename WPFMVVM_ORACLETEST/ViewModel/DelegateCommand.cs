@@ -45,7 +45,7 @@ namespace WPFMVVM_ORACLETEST.ViewModel
         /// raise ca excute changed when property changed 
         /// </summary> 
         public void RaiseCanExecuteChanged() 
-        { 
+        {
             if (this.CanExecuteChanged != null) 
             { 
                 this.CanExecuteChanged(this, EventArgs.Empty); 

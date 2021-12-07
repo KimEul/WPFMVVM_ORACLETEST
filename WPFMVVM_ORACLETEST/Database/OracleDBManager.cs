@@ -117,7 +117,7 @@ namespace WPFMVVM_ORACLETEST.Database
             this.Address = addr01; 
             this.Port = port; 
             this.ConnectionString = "User Id=" + user + ";Password=" + pwd + ";Data Source=" + dataSource; 
-        } 
+        }
         private int Execute_NonQuery(string query) 
         { 
             int result = 0; 
@@ -127,7 +127,7 @@ namespace WPFMVVM_ORACLETEST.Database
                 { 
                     Connection = this.Connection, CommandText = query 
                 }; 
-                LastExecutedCommand = cmd; 
+                LastExecutedCommand = cmd;
                 result = cmd.ExecuteNonQuery(); 
             } 
             catch (Exception ex) 

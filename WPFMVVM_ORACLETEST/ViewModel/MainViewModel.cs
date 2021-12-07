@@ -127,18 +127,15 @@ namespace WPFMVVM_ORACLETEST.ViewModel
         private void DataInsert() 
         { 
             var empList = SampleDatas; 
-            foreach (var emp in empList) 
-            { 
-                string query = @" 
-                MERGE INTO STUDENT USING dual ON 
-                (EMPNO = '#EMPNO' AND NAME = '#ENAME' AND JOB = '#JOB' AND MGR = '#MGR' AND HIREDATE = '#HIREDATE' AND SAL = '#SAL' AND COMM = '#COMM' AND DEPTNO = '#DEPTNO') 
-                WHEN MATCHED THEN UPDATE SET '#EMPNO' AND NAME = '#ENAME' AND JOB = '#JOB' AND MGR = '#MGR' AND HIREDATE = '#HIREDATE' AND SAL = '#SAL' AND COMM = '#COMM' AND DEPTNO = '#DEPTNO' 
-                WHEN NOT MATCHED THEN INSERT (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) VALUES ('#EMPNO','#ENAME', '#JOB', '#MGR', '#HIREDATE', '#SAL', '#COMM','#DEPTNO'); ";
+            foreach (var emp in empList)
+            {
+                string query = @"MERGE INTO EMP USING dual ON (EMPNO = '#EMPNO' AND ENAME = '#ENAME') WHEN MATCHED THEN UPDATE SET JOB = '#JOB', MGR = '#MGR' ,  SAL = '#SAL' , COMM = '#COMM' ,DEPTNO = '#DEPTNO' WHEN NOT MATCHED THEN INSERT (JOB,MGR,SAL,COMM,DEPTNO) VALUES ('#JOB', '#MGR', '#SAL', '#COMM','#DEPTNO'); ";
+
                 query = query.Replace("#EMPNO", emp.EMPNO);
-                query = query.Replace("#NAME", emp.ENAME); 
+                query = query.Replace("#ENAME", emp.ENAME);  
                 query = query.Replace("#JOB", emp.JOB);
                 query = query.Replace("#MGR", emp.MGR);
-                query = query.Replace("#HIREDATE", emp.HIREDATE);
+                //query = query.Replace("#HIREDATE", emp.HIREDATE);
                 query = query.Replace("#SAL", emp.SAL);
                 query = query.Replace("#COMM", emp.COMM);
                 query = query.Replace("#DEPTNO", emp.DEPTNO);
