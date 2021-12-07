@@ -102,7 +102,7 @@ namespace WPFMVVM_ORACLETEST.Database
         }
         #region private.......................................................... 
         private void SetConnectionString() 
-        { 
+        {
             string user = XmlManager.GetValue("DATABASE", "USER"); 
             string pwd = XmlManager.GetValue("DATABASE", "PWD"); 
             string port = XmlManager.GetValue("DATABASE", "PORT"); 

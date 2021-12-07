@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace WPFMVVM_ORACLETEST.Model
 {
-    public class Student 
+    public class emp 
     { 
+        public string EMPNO
+        {
+            get;set;
+        }
         public string ENAME 
         { 
             get; set; 
@@ -19,6 +23,10 @@ namespace WPFMVVM_ORACLETEST.Model
         public string MGR
         { 
             get; set; 
+        }
+        public string HIREDATE
+        {
+            get;set;
         }
         public string SAL
         {

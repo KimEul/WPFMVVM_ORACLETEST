@@ -18,8 +18,14 @@
         </Grid.RowDefinitions>
         <DataGrid x:Name="uiGrid_Main" Grid.ColumnSpan="3" Margin="5" AutoGenerateColumns="False" ItemsSource="{Binding Path= SampleDatas, Mode=TwoWay, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="grid_Name" MinWidth="10" Width="Auto" Header="NAME" Binding="{Binding NAME}"/>
-                <DataGridTextColumn x:Name="grid_AGE" MinWidth ="100" Width="Auto" Header="AGE" Binding="{Binding AGE}"/>
+                <DataGridTextColumn x:Name="grid_EMPNO" MinWidth="10" Width="Auto" Header="EMPNO" Binding="{Binding EMPNO}"/>
+                <DataGridTextColumn x:Name="grid_ENAME" MinWidth="10" Width="Auto" Header="ENAME" Binding="{Binding ENAME}"/>
+                <DataGridTextColumn x:Name="grid_JOB" MinWidth="10" Width="Auto" Header="JOB" Binding="{Binding JOB}"/>
+                <DataGridTextColumn x:Name="grid_MGR" MinWidth="10" Width="Auto" Header="MGR" Binding="{Binding MGR}"/>
+                <DataGridTextColumn x:Name="grid_HIREDATE" MinWidth ="100" Width="Auto" Header="HIREDATE" Binding="{Binding HIREDATE}"/>
+                <DataGridTextColumn x:Name="grid_SAL" MinWidth="10" Width="Auto" Header="SAL" Binding="{Binding SAL}"/>
+                <DataGridTextColumn x:Name="grid_COMM" MinWidth="10" Width="Auto" Header="COMM" Binding="{Binding COMM}"/>
+                <DataGridTextColumn x:Name="grid_DEPTNO" MinWidth="10" Width="Auto" Header="DEPTNO" Binding="{Binding DEPTNO}"/>
                 <!--<DataGridTextColumn MinWidth="100" Width="Auto" Header="GRADE" Binding="{Binding GRADE}"/> <DataGridTextColumn MinWidth="200" Width="*" Header="SCORE" Binding="{Binding SCORE}"/>-->
             </DataGrid.Columns>
         </DataGrid>

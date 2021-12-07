@@ -17,7 +17,7 @@ namespace WPFMVVM_ORACLETEST.ViewModel
     {
         readonly MainWindow ownerWindow = null;
         // MainWindow 객체 선언
-        Student _stu = new Student(); 
+        emp _stu = new emp(); 
         public MainViewModel(MainWindow win) 
         { 
             ownerWindow = win; 
@@ -38,13 +38,13 @@ namespace WPFMVVM_ORACLETEST.ViewModel
                 OnPropertyChanged("JOB"); 
                 } 
         } 
-        ObservableCollection<Student> _sampleDatas = null; 
-        public ObservableCollection<Student> SampleDatas 
+        ObservableCollection<emp> _sampleDatas = null; 
+        public ObservableCollection<emp> SampleDatas 
         { 
             get 
             { 
                 if (_sampleDatas == null) 
-                { _sampleDatas = new ObservableCollection<Student>(); 
+                { _sampleDatas = new ObservableCollection<emp>(); 
                 } 
                 return _sampleDatas; 
             } 
@@ -106,27 +106,42 @@ namespace WPFMVVM_ORACLETEST.ViewModel
         private void DataSearch() 
         { 
             DataSet ds = new DataSet(); 
-            string query = @" SELECT ENAME,JOB FROM STUDENT "; 
+            string query = @" SELECT EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO FROM EMP "; 
             OracleDBManager.Instance.ExecuteDsQuery(ds, query); 
             for(int idx = 0; idx < ds.Tables[0].Rows.Count; idx++) 
-            { 
-                Student obj = new Student 
-                { 
-                    ENAME = ds.Tables[0].Rows[idx]["ENAME"].ToString(), 
-                    JOB = ds.Tables[0].Rows[idx]["JOB"].ToString() 
+            {
+                emp obj = new emp
+                {
+                    EMPNO = ds.Tables[0].Rows[idx]["EMPNO"].ToString(),
+                    ENAME = ds.Tables[0].Rows[idx]["ENAME"].ToString(),
+                    JOB = ds.Tables[0].Rows[idx]["JOB"].ToString(),
+                    MGR = ds.Tables[0].Rows[idx]["MGR"].ToString(),
+                    HIREDATE = ds.Tables[0].Rows[idx]["HIREDATE"].ToString(),
+                    SAL = ds.Tables[0].Rows[idx]["SAL"].ToString(),
+                    COMM = ds.Tables[0].Rows[idx]["COMM"].ToString(),
+                    DEPTNO = ds.Tables[0].Rows[idx]["DEPTNO"].ToString()
                 }; 
                 SampleDatas.Add(obj); 
             } 
         } 
         private void DataInsert() 
         { 
-            var studentList = SampleDatas; 
-            foreach (var stu in studentList) 
+            var empList = SampleDatas; 
+            foreach (var emp in empList) 
             { 
                 string query = @" 
-                MERGE INTO STUDENT USING dual ON (ENAME = '#ENAME' AND JOB = '#JOB') WHEN MATCHED THEN UPDATE SET ENAME = '#ENAME', JOB = '#JOB' WHEN NOT MATCHED THEN INSERT (ENAME, JOB) VALUES ('#ENAME', '#JOB'); "; 
-                query = query.Replace("#NAME", stu.ENAME); 
-                query = query.Replace("#AGE", stu.JOB); 
+                MERGE INTO STUDENT USING dual ON 
+                (EMPNO = '#EMPNO' AND NAME = '#ENAME' AND JOB = '#JOB' AND MGR = '#MGR' AND HIREDATE = '#HIREDATE' AND SAL = '#SAL' AND COMM = '#COMM' AND DEPTNO = '#DEPTNO') 
+                WHEN MATCHED THEN UPDATE SET '#EMPNO' AND NAME = '#ENAME' AND JOB = '#JOB' AND MGR = '#MGR' AND HIREDATE = '#HIREDATE' AND SAL = '#SAL' AND COMM = '#COMM' AND DEPTNO = '#DEPTNO' 
+                WHEN NOT MATCHED THEN INSERT (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) VALUES ('#EMPNO','#ENAME', '#JOB', '#MGR', '#HIREDATE', '#SAL', '#COMM','#DEPTNO'); ";
+                query = query.Replace("#EMPNO", emp.EMPNO);
+                query = query.Replace("#NAME", emp.ENAME); 
+                query = query.Replace("#JOB", emp.JOB);
+                query = query.Replace("#MGR", emp.MGR);
+                query = query.Replace("#HIREDATE", emp.HIREDATE);
+                query = query.Replace("#SAL", emp.SAL);
+                query = query.Replace("#COMM", emp.COMM);
+                query = query.Replace("#DEPTNO", emp.DEPTNO);
                 OracleDBManager.Instance.ExecuteNonQuery(query); 
             } 
         } /// <summary> /// DB Connect /// </summary> 
